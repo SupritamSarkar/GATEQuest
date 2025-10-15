@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GATE CS 2025 - Syllabus Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <header class="header">
+      <h1 class="title">GATEQuest</h1>
+      <h3 class="subtitle">Your journey to GATE mastery</h3>
+      <p class="subtitle">Syllabus Tracker & Mock Test Manager</p>
+    </header>
+
+    <div class="main-content">
+      <!-- SYLLABUS SECTION -->
+      <section class="syllabus-section">
+        <div class="section-header">
+          <h2>📚 Syllabus Progress</h2>
+
+          <div class="progress-stats">
+            <span class="stat">
+              <span class="stat-value" id="completed-topics">0</span>
+              <span class="stat-label">Topics Done</span>
+            </span>
+            <span class="stat">
+              <span class="stat-value" id="total-topics">0</span>
+              <span class="stat-label">Total Topics</span>
+            </span>
+            <span class="stat">
+              <span class="stat-value" id="progress-percent">0%</span>
+              <span class="stat-label">Progress</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- PYQ PROGRESS -->
+        <div class="pyq-stats">
+          <h2>🎯 PYQ Progress</h2>
+          <div class="progress-stats">
+            <span class="stat pyq-stat">
+              <span class="stat-value" id="solved-pyqs">0</span>
+              <span class="stat-label">PYQs Solved</span>
+            </span>
+            <span class="stat pyq-stat">
+              <span class="stat-value" id="total-pyqs">0</span>
+              <span class="stat-label">Total PYQs</span>
+            </span>
+            <span class="stat pyq-stat">
+              <span class="stat-value" id="pyq-progress-percent">0%</span>
+              <span class="stat-label">PYQ Progress</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- SYLLABUS CONTENT -->
+         <h2>Topics</h2>
+        <div class="syllabus-content" id="syllabus-content">
+          <div id="loading-message" style="text-align:center; padding:2rem; color:gray;">
+            ⏳ Loading syllabus...
+          </div>
+        </div>
+      </section>
+
+      <!-- MOCK TEST SECTION -->
+      <section class="mock-test-section">
+        <div class="section-header">
+          <h2>📖 Mock Tests</h2>
+          <button class="btn btn-primary" id="add-mock-test-btn">+ Add Mock Test</button>
+        </div>
+
+        <!-- ADD TEST FORM -->
+        <div class="mock-test-form" id="mock-test-form" style="display:none;">
+          <h3>Add New Mock Test</h3>
+          <form id="mock-test-form-element">
+            <div class="form-group">
+              <label for="test-title">Test Title</label>
+              <input type="text" id="test-title" name="title" required placeholder="e.g., Full Length Test 1">
+            </div>
+
+            <div class="form-group">
+              <label for="test-date">Date</label>
+              <input type="date" id="test-date" name="date" required>
+            </div>
+
+            <div class="form-group">
+              <label for="test-score">Score</label>
+              <input type="number" id="test-score" name="score" min="0" max="100" placeholder="e.g., 85">
+            </div>
+
+            <div class="form-group">
+              <label for="test-remarks">Remarks</label>
+              <textarea id="test-remarks" name="remarks" rows="3" placeholder="Notes about performance, areas to improve..."></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success">Save Test</button>
+              <button type="button" class="btn btn-secondary" id="cancel-mock-test">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- TEST RESULTS -->
+        <div class="mock-test-results">
+          <h3>Test Results</h3>
+          <div class="test-stats">
+            <div class="stat-card">
+              <span class="stat-number" id="total-tests">0</span>
+              <span class="stat-desc">Total Tests</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" id="avg-score">0</span>
+              <span class="stat-desc">Avg Score</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" id="best-score">0</span>
+              <span class="stat-desc">Best Score</span>
+            </div>
+          </div>
+
+          <div class="test-list" id="test-list">
+            <div class="empty-state">
+              <div class="empty-state-icon">📝</div>
+              <div class="empty-state-text">No mock tests yet</div>
+              <div class="empty-state-subtext">Add your first mock test to track your progress</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
