@@ -22,16 +22,36 @@ if (!user || !token) {
 const syllabusData = [
   {
     topic: "Engineering Mathematics",
-    subtopics: [
-      "Discrete Mathematics: Propositional and first order logic",
-      "Sets, relations, functions, partial orders and lattices",
-      "Monoids, Groups",
-      "Graphs: connectivity, matching, coloring",
-      "Combinatorics: counting, recurrence relations, generating functions",
-      "Linear Algebra: matrices, determinants, system of equations, eigenvalues, LU decomposition",
-      "Calculus: limits, continuity, differentiability, maxima/minima, mean value theorem, integration",
-      "Probability and Statistics: random variables, distributions, mean, variance, Bayes theorem",
-    ],
+        subtopics: [
+            "Discrete Mathematics: Propositional and first order logic",
+            "Sets, relations, functions, partial orders and lattices",
+            "Monoids",
+            "Groups",
+            "Graphs: connectivity",
+            "Graphs: matching",
+            "Graphs: coloring",
+            "Combinatorics: counting",
+            "Combinatorics: recurrence relations",
+            "Combinatorics: generating functions",
+            "Linear Algebra: Matrices",
+            "Linear Algebra: determinants",
+            "Linear Algebra: system of linear equations",
+            "Eigenvalues and eigenvectors",
+            "LU decomposition",
+            "Calculus: Limits",
+            "Calculus: continuity and differentiability",
+            "Maxima and minima",
+            "Mean value theorem",
+            "Integration",
+            "Probability and Statistics: Random variables",
+            "Uniform distribution",
+            "Normal distribution",
+            "Exponential distribution",
+            "Poisson distribution",
+            "Binomial distribution",
+            "Mean, median, mode and standard deviation",
+            "Conditional probability and Bayes theorem"
+        ]
   },
   {
     topic: "Digital Logic",
@@ -45,57 +65,141 @@ const syllabusData = [
   },
   {
     topic: "Computer Organization and Architecture",
-    subtopics: [
-      "Machine instructions and addressing modes",
-      "ALU, datapath and control unit",
-      "Instruction pipelining and hazards",
-      "Memory hierarchy: cache, main, secondary",
-      "I/O interface (interrupt and DMA)",
-    ],
+        subtopics: [
+            "Machine instructions and addressing modes",
+            "ALU",
+            "Data‐path and control unit",
+            "Instruction pipelining",
+            "Pipeline hazards",
+            "Memory hierarchy: cache",
+            "Memory hierarchy: main memory",
+            "Memory hierarchy: secondary storage",
+            "I/O interface (interrupt mode)",
+            "I/O interface (DMA mode)"
+        ]
   },
   {
     topic: "Programming and Data Structures",
-    subtopics: [
-      "Programming in C, Recursion, Arrays, Stacks, Queues, Linked lists, Trees, BSTs, Heaps, Graphs",
-    ],
+        subtopics: [
+            "Programming in C",
+            "Recursion",
+            "Arrays",
+            "Stacks",
+            "Queues",
+            "Linked lists",
+            "Trees",
+            "Binary search trees",
+            "Binary heaps",
+            "Graphs"
+        ]
   },
   {
     topic: "Algorithms",
-    subtopics: [
-      "Asymptotic time and space complexity",
-      "Design techniques: greedy, dynamic programming, divide and conquer",
-      "Graph traversals, MSTs, shortest paths",
-    ],
+        subtopics: [
+            "Asymptotic worst case time complexity",
+            "Asymptotic worst case space complexity",
+            "Algorithm design techniques: greedy",
+            "Algorithm design techniques: dynamic programming",
+            "Algorithm design techniques: divide‐and‐conquer",
+            "Graph traversals",
+            "Minimum spanning trees",
+            "Shortest paths"
+        ]
   },
   {
     topic: "Theory of Computation",
-    subtopics: [
-      "Regular expressions, Finite automata, CFGs, Pushdown automata, Regular/Context-free languages, Pumping lemma, Turing machines, Undecidability",
-    ],
+        subtopics: [
+            "Regular expressions",
+            "Finite automata",
+            "Context‐free grammars",
+            "Push‐down automata",
+            "Regular languages",
+            "Context‐free languages",
+            "Pumping lemma",
+            "Turing machines",
+            "Undecidability"
+        ]
   },
   {
     topic: "Compiler Design",
-    subtopics: [
-      "Lexical analysis, Syntax analysis, Syntax-directed translation, Runtime environments, Intermediate code generation, Local optimization, Data flow analysis",
-    ],
+        subtopics: [
+            "Lexical analysis",
+            "Syntax analysis",
+            "Syntax‐directed translation",
+            "Runtime environments",
+            "Intermediate code generation",
+            "Local optimisation",
+            "Data flow analyses: constant propagation",
+            "Data flow analyses: liveness analysis",
+            "Data flow analyses: common subexpression elimination"
+        ]
   },
   {
     topic: "Operating System",
-    subtopics: [
-      "Processes, Threads, IPC, Concurrency, Deadlock, Scheduling, Memory management, Virtual memory, File systems",
-    ],
+        subtopics: [
+            "System calls",
+            "Processes",
+            "Threads",
+            "Inter‐process communication",
+            "Concurrency and synchronization",
+            "Deadlock",
+            "CPU scheduling",
+            "I/O scheduling",
+            "Memory management",
+            "Virtual memory",
+            "File systems"
+        ]
   },
   {
     topic: "Databases",
-    subtopics: [
-      "ER model, Relational algebra, SQL, Integrity constraints, Normalization, File organization, Indexing (B/B+ trees), Transactions, Concurrency control",
-    ],
+        subtopics: [
+            "ER‐model",
+            "Relational model: relational algebra",
+            "Relational model: tuple calculus",
+            "Relational model: SQL",
+            "Integrity constraints",
+            "Normal forms",
+            "File organization",
+            "Indexing (B trees)",
+            "Indexing (B+ trees)",
+            "Transactions",
+            "Concurrency control"
+        ]
   },
   {
     topic: "Computer Networks",
-    subtopics: [
-      "OSI & TCP/IP layers, switching, data link layer, routing protocols, IP addressing, TCP/UDP, DNS, SMTP, HTTP, FTP",
-    ],
+        subtopics: [
+            "Concept of layering: OSI Protocol Stack",
+            "Concept of layering: TCP/IP Protocol Stack",
+            "Basics of packet switching",
+            "Basics of circuit switching",
+            "Basics of virtual circuit‐switching",
+            "Data link layer: framing",
+            "Data link layer: error detection",
+            "Data link layer: Medium Access Control",
+            "Data link layer: Ethernet bridging",
+            "Routing protocols: shortest path",
+            "Routing protocols: flooding",
+            "Routing protocols: distance vector routing",
+            "Routing protocols: link state routing",
+            "Fragmentation and IP addressing",
+            "IPv4",
+            "CIDR notation",
+            "IP support protocols: ARP",
+            "IP support protocols: DHCP",
+            "IP support protocols: ICMP",
+            "Network Address Translation (NAT)",
+            "Transport layer: flow control",
+            "Transport layer: congestion control",
+            "Transport layer: UDP",
+            "Transport layer: TCP",
+            "Transport layer: sockets",
+            "Application layer protocols: DNS",
+            "Application layer protocols: SMTP",
+            "Application layer protocols: HTTP",
+            "Application layer protocols: FTP",
+            "Application layer protocols: Email"
+        ]
   },
 ];
 
