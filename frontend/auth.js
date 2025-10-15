@@ -1,4 +1,5 @@
-const API_BASE = "http://localhost:5000/api/v1/auth";
+const API_BASE = "https://gatequest.onrender.com/api/v1/auth";
+
 
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");

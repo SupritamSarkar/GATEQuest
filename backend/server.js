@@ -9,16 +9,45 @@ import mockTestRoutes from "./routes/mockTestRoutes.js";
 
 dotenv.config();
 const app = express();
-app.use(cors());
+
+// -----------------------------
+// ⚙️ CORS Configuration
+// -----------------------------
+const allowedOrigins = [
+  "http://localhost:5500",           // for local testing
+  "https://gatequest.netlify.app",   // your Netlify frontend
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // allow requests with no origin (like Postman or curl)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 app.use(express.json());
 connectDB();
 
-
-mongoose.connect(process.env.MONGO_URI)
+// -----------------------------
+// ⚡ Database Connection
+// -----------------------------
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB connected"))
-  .catch(err => console.error("❌ MongoDB error:", err));
+  .catch((err) => console.error("❌ MongoDB error:", err));
 
-
+// -----------------------------
+// 🧩 Routes
+// -----------------------------
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/syllabus", syllabusRoutes);
 app.use("/api/mocktests", mockTestRoutes);
@@ -29,4 +58,4 @@ app.get("/", (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

@@ -1,18 +1,20 @@
 // ======================================================
-// 🧠 GATE CS 2025 Syllabus Tracker - Connected to Node.js Backend
+// 🧠 GATEQuest - Syllabus Tracker (Connected to Render Backend)
 // ======================================================
 
 // -----------------------------
 // ⚙️ Configuration
 // -----------------------------
-const API_BASE = "http://localhost:5000"; // backend URL
+const API_BASE = "https://gatequest.onrender.com"; // ✅ Deployed backend
 
-// Temporary mock user (replace with actual login later)
-const user = {
-  id: "68efac2c5106ab83ab9d7021", // MongoDB user ID
-  token:
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4ZWZhYzJjNTEwNmFiODNhYjlkNzAyMSIsImlhdCI6MTc2MDUzNzcwNCwiZXhwIjoxNzYwNjQ1NzA0fQ.9SoU3ep0KtVTVp8v2KS5sB2o8FqLe_VFPYtDlsBRx2k",
-};
+// Get user from localStorage (after login)
+const user = JSON.parse(localStorage.getItem("user"));
+const token = localStorage.getItem("token");
+
+// Redirect to login if not authenticated
+if (!user || !token) {
+  window.location.href = "auth.html";
+}
 
 // -----------------------------
 // 📘 GATE CS 2025 Syllabus Data
@@ -28,8 +30,8 @@ const syllabusData = [
       "Combinatorics: counting, recurrence relations, generating functions",
       "Linear Algebra: matrices, determinants, system of equations, eigenvalues, LU decomposition",
       "Calculus: limits, continuity, differentiability, maxima/minima, mean value theorem, integration",
-      "Probability and Statistics: random variables, distributions, mean, variance, Bayes theorem"
-    ]
+      "Probability and Statistics: random variables, distributions, mean, variance, Bayes theorem",
+    ],
   },
   {
     topic: "Digital Logic",
@@ -38,8 +40,8 @@ const syllabusData = [
       "Combinational circuits",
       "Sequential circuits",
       "Minimization",
-      "Number representations and computer arithmetic (fixed and floating point)"
-    ]
+      "Number representations and computer arithmetic (fixed and floating point)",
+    ],
   },
   {
     topic: "Computer Organization and Architecture",
@@ -48,53 +50,53 @@ const syllabusData = [
       "ALU, datapath and control unit",
       "Instruction pipelining and hazards",
       "Memory hierarchy: cache, main, secondary",
-      "I/O interface (interrupt and DMA)"
-    ]
+      "I/O interface (interrupt and DMA)",
+    ],
   },
   {
     topic: "Programming and Data Structures",
     subtopics: [
-      "Programming in C, Recursion, Arrays, Stacks, Queues, Linked lists, Trees, BSTs, Heaps, Graphs"
-    ]
+      "Programming in C, Recursion, Arrays, Stacks, Queues, Linked lists, Trees, BSTs, Heaps, Graphs",
+    ],
   },
   {
     topic: "Algorithms",
     subtopics: [
       "Asymptotic time and space complexity",
       "Design techniques: greedy, dynamic programming, divide and conquer",
-      "Graph traversals, MSTs, shortest paths"
-    ]
+      "Graph traversals, MSTs, shortest paths",
+    ],
   },
   {
     topic: "Theory of Computation",
     subtopics: [
-      "Regular expressions, Finite automata, CFGs, Pushdown automata, Regular/Context-free languages, Pumping lemma, Turing machines, Undecidability"
-    ]
+      "Regular expressions, Finite automata, CFGs, Pushdown automata, Regular/Context-free languages, Pumping lemma, Turing machines, Undecidability",
+    ],
   },
   {
     topic: "Compiler Design",
     subtopics: [
-      "Lexical analysis, Syntax analysis, Syntax-directed translation, Runtime environments, Intermediate code generation, Local optimization, Data flow analysis"
-    ]
+      "Lexical analysis, Syntax analysis, Syntax-directed translation, Runtime environments, Intermediate code generation, Local optimization, Data flow analysis",
+    ],
   },
   {
     topic: "Operating System",
     subtopics: [
-      "Processes, Threads, IPC, Concurrency, Deadlock, Scheduling, Memory management, Virtual memory, File systems"
-    ]
+      "Processes, Threads, IPC, Concurrency, Deadlock, Scheduling, Memory management, Virtual memory, File systems",
+    ],
   },
   {
     topic: "Databases",
     subtopics: [
-      "ER model, Relational algebra, SQL, Integrity constraints, Normalization, File organization, Indexing (B/B+ trees), Transactions, Concurrency control"
-    ]
+      "ER model, Relational algebra, SQL, Integrity constraints, Normalization, File organization, Indexing (B/B+ trees), Transactions, Concurrency control",
+    ],
   },
   {
     topic: "Computer Networks",
     subtopics: [
-      "OSI & TCP/IP layers, switching, data link layer, routing protocols, IP addressing, TCP/UDP, DNS, SMTP, HTTP, FTP"
-    ]
-  }
+      "OSI & TCP/IP layers, switching, data link layer, routing protocols, IP addressing, TCP/UDP, DNS, SMTP, HTTP, FTP",
+    ],
+  },
 ];
 
 // -----------------------------
@@ -104,14 +106,6 @@ let appState = {
   syllabus: {},
   pyq: {},
   mockTests: [],
-  stats: {
-    completedTopics: 0,
-    totalTopics: 0,
-    progressPercent: 0,
-    solvedPyqs: 0,
-    totalPyqs: 0,
-    pyqProgressPercent: 0,
-  },
 };
 
 // -----------------------------
@@ -119,8 +113,8 @@ let appState = {
 // -----------------------------
 async function loadFromDatabase() {
   try {
-    const res = await fetch(`${API_BASE}/api/syllabus/${user.id}`, {
-      headers: { Authorization: `Bearer ${user.token}` },
+    const res = await fetch(`${API_BASE}/api/syllabus/${user._id}`, {
+      headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
     appState.syllabus = data?.syllabus || {};
@@ -133,11 +127,11 @@ async function loadFromDatabase() {
 
 async function saveToDatabase() {
   try {
-    await fetch(`${API_BASE}/api/syllabus/${user.id}`, {
+    await fetch(`${API_BASE}/api/syllabus/${user._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         syllabus: appState.syllabus,
@@ -310,8 +304,8 @@ function updatePyqStats() {
 // -----------------------------
 async function loadMockTests() {
   try {
-    const res = await fetch(`${API_BASE}/api/mocktests/${user.id}`, {
-      headers: { Authorization: `Bearer ${user.token}` },
+    const res = await fetch(`${API_BASE}/api/mocktests/${user._id}`, {
+      headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
     appState.mockTests = data || [];
@@ -331,11 +325,11 @@ async function handleMockTestSubmit(e) {
   };
 
   try {
-    const res = await fetch(`${API_BASE}/api/mocktests/${user.id}`, {
+    const res = await fetch(`${API_BASE}/api/mocktests/${user._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${user.token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(mockTest),
     });
@@ -363,7 +357,7 @@ function renderMockTests() {
 function createTestElement(test) {
   const scoreClass = getScoreClass(test.score);
   const date = new Date(test.date).toLocaleDateString();
-   return `
+  return `
     <div class="test-item">
       <div class="test-header">
         <div class="test-title">${test.title}</div>
@@ -378,12 +372,11 @@ function createTestElement(test) {
 }
 
 function getScoreClass(score) {
-  if (score >= 80) return "excellent";  // green
-  if (score >= 60) return "good";       // yellow
-  if (score >= 40) return "average";    // orange
-  return "poor";                        // red
+  if (score >= 80) return "excellent";
+  if (score >= 60) return "good";
+  if (score >= 40) return "average";
+  return "poor";
 }
-
 
 function updateMockTestStats() {
   const total = appState.mockTests.length;
@@ -402,9 +395,9 @@ function updateMockTestStats() {
 async function deleteMockTest(testId) {
   if (!confirm("Delete this test?")) return;
   try {
-    await fetch(`${API_BASE}/api/mocktests/${user.id}/${testId}`, {
+    await fetch(`${API_BASE}/api/mocktests/${user._id}/${testId}`, {
       method: "DELETE",
-      headers: { Authorization: `Bearer ${user.token}` },
+      headers: { Authorization: `Bearer ${token}` },
     });
     appState.mockTests = appState.mockTests.filter((t) => t._id !== testId);
     renderMockTests();
