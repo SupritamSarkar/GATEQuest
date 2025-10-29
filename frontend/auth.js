@@ -14,6 +14,7 @@ const showLogin = document.getElementById("show-login");
 const messageEl = document.getElementById("message");
 const subtitleEl = document.getElementById("form-subtitle");
 const googleLoginBtn = document.getElementById("google-login");
+const googleSignupBtn = document.getElementById("google-signup-btn");
 
 // -----------------------------
 // 🧩 Helper: Show messages
@@ -48,6 +49,12 @@ if (googleLoginBtn) {
   googleLoginBtn.addEventListener("click", () => {
     // Redirect to backend Google OAuth route
     window.location.href = `${API_BASE}/google`;
+  });
+}
+
+if (googleSignupBtn) {
+  googleSignupBtn.addEventListener("click", () => {
+    window.location.href = "https://gatequest.onrender.com/api/v1/auth/google" || "http://localhost:5000/api/v1/auth/google";
   });
 }
 

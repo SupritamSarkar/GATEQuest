@@ -7,6 +7,34 @@
 // -----------------------------
 const API_BASE = "https://gatequest.onrender.com"; // ✅ Deployed backend
 
+
+// -----------------------------
+// 🔑 Handle Google OAuth Redirect (extract ?token=...)
+// -----------------------------
+(function handleGoogleRedirect() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get("token");
+  if (token) {
+    // Save token
+    localStorage.setItem("token", token);
+
+    // Optionally fetch user info from backend
+    fetch(`${API_BASE}/api/v1/auth/getUser`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then(res => res.json())
+      .then(user => {
+        if (user && user.email) {
+          localStorage.setItem("user", JSON.stringify(user));
+          // Clean URL and reload
+          window.history.replaceState({}, document.title, "index.html");
+        }
+      })
+      .catch(err => console.error("OAuth fetch error:", err));
+  }
+})();
+
+
 // -----------------------------
 // 🧍 User Authentication Check
 // -----------------------------
