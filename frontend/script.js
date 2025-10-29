@@ -1,5 +1,5 @@
 // ======================================================
-// 🧠 GATEQuest - Syllabus Tracker (Connected to Render Backend)
+// 🧠 GATEQuest - Syllabus Tracker (Render + Netlify Compatible)
 // ======================================================
 
 // -----------------------------
@@ -7,7 +7,9 @@
 // -----------------------------
 const API_BASE = "https://gatequest.onrender.com"; // ✅ Deployed backend
 
-// Get user from localStorage (after login)
+// -----------------------------
+// 🧍 User Authentication Check
+// -----------------------------
 const user = JSON.parse(localStorage.getItem("user"));
 const token = localStorage.getItem("token");
 
@@ -22,36 +24,36 @@ if (!user || !token) {
 const syllabusData = [
   {
     topic: "Engineering Mathematics",
-        subtopics: [
-            "Discrete Mathematics: Propositional and first order logic",
-            "Sets, relations, functions, partial orders and lattices",
-            "Monoids",
-            "Groups",
-            "Graphs: connectivity",
-            "Graphs: matching",
-            "Graphs: coloring",
-            "Combinatorics: counting",
-            "Combinatorics: recurrence relations",
-            "Combinatorics: generating functions",
-            "Linear Algebra: Matrices",
-            "Linear Algebra: determinants",
-            "Linear Algebra: system of linear equations",
-            "Eigenvalues and eigenvectors",
-            "LU decomposition",
-            "Calculus: Limits",
-            "Calculus: continuity and differentiability",
-            "Maxima and minima",
-            "Mean value theorem",
-            "Integration",
-            "Probability and Statistics: Random variables",
-            "Uniform distribution",
-            "Normal distribution",
-            "Exponential distribution",
-            "Poisson distribution",
-            "Binomial distribution",
-            "Mean, median, mode and standard deviation",
-            "Conditional probability and Bayes theorem"
-        ]
+    subtopics: [
+      "Discrete Mathematics: Propositional and first order logic",
+      "Sets, relations, functions, partial orders and lattices",
+      "Monoids",
+      "Groups",
+      "Graphs: connectivity",
+      "Graphs: matching",
+      "Graphs: coloring",
+      "Combinatorics: counting",
+      "Combinatorics: recurrence relations",
+      "Combinatorics: generating functions",
+      "Linear Algebra: Matrices",
+      "Linear Algebra: determinants",
+      "Linear Algebra: system of linear equations",
+      "Eigenvalues and eigenvectors",
+      "LU decomposition",
+      "Calculus: Limits",
+      "Calculus: continuity and differentiability",
+      "Maxima and minima",
+      "Mean value theorem",
+      "Integration",
+      "Probability and Statistics: Random variables",
+      "Uniform distribution",
+      "Normal distribution",
+      "Exponential distribution",
+      "Poisson distribution",
+      "Binomial distribution",
+      "Mean, median, mode and standard deviation",
+      "Conditional probability and Bayes theorem",
+    ],
   },
   {
     topic: "Digital Logic",
@@ -65,146 +67,110 @@ const syllabusData = [
   },
   {
     topic: "Computer Organization and Architecture",
-        subtopics: [
-            "Machine instructions and addressing modes",
-            "ALU",
-            "Data‐path and control unit",
-            "Instruction pipelining",
-            "Pipeline hazards",
-            "Memory hierarchy: cache",
-            "Memory hierarchy: main memory",
-            "Memory hierarchy: secondary storage",
-            "I/O interface (interrupt mode)",
-            "I/O interface (DMA mode)"
-        ]
+    subtopics: [
+      "Machine instructions and addressing modes",
+      "ALU",
+      "Data‐path and control unit",
+      "Instruction pipelining",
+      "Pipeline hazards",
+      "Memory hierarchy: cache, main memory, secondary storage",
+      "I/O interface (interrupt and DMA mode)",
+    ],
   },
   {
     topic: "Programming and Data Structures",
-        subtopics: [
-            "Programming in C",
-            "Recursion",
-            "Arrays",
-            "Stacks",
-            "Queues",
-            "Linked lists",
-            "Trees",
-            "Binary search trees",
-            "Binary heaps",
-            "Graphs"
-        ]
+    subtopics: [
+      "Programming in C",
+      "Recursion",
+      "Arrays",
+      "Stacks",
+      "Queues",
+      "Linked lists",
+      "Trees",
+      "Binary search trees",
+      "Binary heaps",
+      "Graphs",
+    ],
   },
   {
     topic: "Algorithms",
-        subtopics: [
-            "Asymptotic worst case time complexity",
-            "Asymptotic worst case space complexity",
-            "Algorithm design techniques: greedy",
-            "Algorithm design techniques: dynamic programming",
-            "Algorithm design techniques: divide‐and‐conquer",
-            "Graph traversals",
-            "Minimum spanning trees",
-            "Shortest paths"
-        ]
+    subtopics: [
+      "Asymptotic worst case time and space complexity",
+      "Algorithm design techniques: greedy, dynamic programming, divide‐and‐conquer",
+      "Graph traversals",
+      "Minimum spanning trees",
+      "Shortest paths",
+    ],
   },
   {
     topic: "Theory of Computation",
-        subtopics: [
-            "Regular expressions",
-            "Finite automata",
-            "Context‐free grammars",
-            "Push‐down automata",
-            "Regular languages",
-            "Context‐free languages",
-            "Pumping lemma",
-            "Turing machines",
-            "Undecidability"
-        ]
+    subtopics: [
+      "Regular expressions",
+      "Finite automata",
+      "Context‐free grammars",
+      "Push‐down automata",
+      "Regular languages",
+      "Context‐free languages",
+      "Pumping lemma",
+      "Turing machines",
+      "Undecidability",
+    ],
   },
   {
     topic: "Compiler Design",
-        subtopics: [
-            "Lexical analysis",
-            "Syntax analysis",
-            "Syntax‐directed translation",
-            "Runtime environments",
-            "Intermediate code generation",
-            "Local optimisation",
-            "Data flow analyses: constant propagation",
-            "Data flow analyses: liveness analysis",
-            "Data flow analyses: common subexpression elimination"
-        ]
+    subtopics: [
+      "Lexical analysis",
+      "Syntax analysis",
+      "Syntax‐directed translation",
+      "Runtime environments",
+      "Intermediate code generation",
+      "Local optimisation",
+      "Data flow analyses (constant propagation, liveness, common subexpression elimination)",
+    ],
   },
   {
     topic: "Operating System",
-        subtopics: [
-            "System calls",
-            "Processes",
-            "Threads",
-            "Inter‐process communication",
-            "Concurrency and synchronization",
-            "Deadlock",
-            "CPU scheduling",
-            "I/O scheduling",
-            "Memory management",
-            "Virtual memory",
-            "File systems"
-        ]
+    subtopics: [
+      "System calls",
+      "Processes",
+      "Threads",
+      "Inter‐process communication",
+      "Concurrency and synchronization",
+      "Deadlock",
+      "CPU/I/O scheduling",
+      "Memory management",
+      "Virtual memory",
+      "File systems",
+    ],
   },
   {
     topic: "Databases",
-        subtopics: [
-            "ER‐model",
-            "Relational model: relational algebra",
-            "Relational model: tuple calculus",
-            "Relational model: SQL",
-            "Integrity constraints",
-            "Normal forms",
-            "File organization",
-            "Indexing (B trees)",
-            "Indexing (B+ trees)",
-            "Transactions",
-            "Concurrency control"
-        ]
+    subtopics: [
+      "ER‐model",
+      "Relational algebra & SQL",
+      "Integrity constraints & Normal forms",
+      "File organization, Indexing (B/B+ trees)",
+      "Transactions, Concurrency control",
+    ],
   },
   {
     topic: "Computer Networks",
-        subtopics: [
-            "Concept of layering: OSI Protocol Stack",
-            "Concept of layering: TCP/IP Protocol Stack",
-            "Basics of packet switching",
-            "Basics of circuit switching",
-            "Basics of virtual circuit‐switching",
-            "Data link layer: framing",
-            "Data link layer: error detection",
-            "Data link layer: Medium Access Control",
-            "Data link layer: Ethernet bridging",
-            "Routing protocols: shortest path",
-            "Routing protocols: flooding",
-            "Routing protocols: distance vector routing",
-            "Routing protocols: link state routing",
-            "Fragmentation and IP addressing",
-            "IPv4",
-            "CIDR notation",
-            "IP support protocols: ARP",
-            "IP support protocols: DHCP",
-            "IP support protocols: ICMP",
-            "Network Address Translation (NAT)",
-            "Transport layer: flow control",
-            "Transport layer: congestion control",
-            "Transport layer: UDP",
-            "Transport layer: TCP",
-            "Transport layer: sockets",
-            "Application layer protocols: DNS",
-            "Application layer protocols: SMTP",
-            "Application layer protocols: HTTP",
-            "Application layer protocols: FTP",
-            "Application layer protocols: Email"
-        ]
+    subtopics: [
+      "Concept of layering (OSI & TCP/IP)",
+      "Packet/circuit switching, framing, error detection",
+      "MAC, Ethernet bridging",
+      "Routing: shortest path, flooding, DV, LS",
+      "IP addressing, IPv4, CIDR, NAT",
+      "ARP, DHCP, ICMP",
+      "Transport: UDP, TCP, flow/congestion control",
+      "Sockets",
+      "App layer: DNS, SMTP, HTTP, FTP, Email",
+    ],
   },
 ];
 
 // -----------------------------
-// 📊 Application State
+// 📊 App State
 // -----------------------------
 let appState = {
   syllabus: {},
@@ -248,7 +214,7 @@ async function saveToDatabase() {
 }
 
 // -----------------------------
-// 🧩 DOM Elements
+// 🧩 DOM Helpers
 // -----------------------------
 const el = (id) => document.getElementById(id);
 const elements = {
@@ -270,7 +236,7 @@ const elements = {
 };
 
 // -----------------------------
-// 🚀 Initialize App
+// 🚀 Initialize
 // -----------------------------
 async function init() {
   await loadFromDatabase();
@@ -280,6 +246,7 @@ async function init() {
   updateStats();
   updatePyqStats();
   bindEvents();
+  renderUserProfile();
   console.log("✅ App initialized");
 }
 
@@ -330,7 +297,7 @@ function toggleTopic(i) {
 }
 
 // -----------------------------
-// 🎯 Checkbox Handlers
+// 🎯 Checkbox Events
 // -----------------------------
 function bindEvents() {
   document.addEventListener("change", (e) => {
@@ -347,16 +314,13 @@ function bindEvents() {
     }
   });
 
-  if (elements.addMockTestBtn)
-    elements.addMockTestBtn.addEventListener("click", showMockTestForm);
-  if (elements.cancelMockTest)
-    elements.cancelMockTest.addEventListener("click", hideMockTestForm);
-  if (elements.mockTestFormElement)
-    elements.mockTestFormElement.addEventListener("submit", handleMockTestSubmit);
+  elements.addMockTestBtn?.addEventListener("click", showMockTestForm);
+  elements.cancelMockTest?.addEventListener("click", hideMockTestForm);
+  elements.mockTestFormElement?.addEventListener("submit", handleMockTestSubmit);
 }
 
 // -----------------------------
-// 🧾 Mock Test Form Controls
+// 🧾 Mock Test Controls
 // -----------------------------
 function showMockTestForm() {
   elements.mockTestForm.style.display = "block";
@@ -371,7 +335,7 @@ function hideMockTestForm() {
 }
 
 // -----------------------------
-// 📈 Update Stats
+// 📊 Stats Update
 // -----------------------------
 function updateStats() {
   let total = 0,
@@ -441,7 +405,7 @@ async function handleMockTestSubmit(e) {
     appState.mockTests.unshift(saved);
     renderMockTests();
     hideMockTestForm();
-    showNotification("Mock test added successfully!", "success");
+    showNotification("✅ Mock test added successfully!", "success");
   } catch (err) {
     console.error("Error adding mock test:", err);
   }
@@ -505,7 +469,7 @@ async function deleteMockTest(testId) {
     });
     appState.mockTests = appState.mockTests.filter((t) => t._id !== testId);
     renderMockTests();
-    showNotification("Mock test deleted", "success");
+    showNotification("🗑️ Mock test deleted", "success");
   } catch (err) {
     console.error("Error deleting mock test:", err);
   }
@@ -528,6 +492,7 @@ function showNotification(msg, type = "info") {
     borderRadius: "8px",
     opacity: 0,
     transition: "0.3s",
+    zIndex: 9999,
   });
   document.body.appendChild(n);
   setTimeout(() => (n.style.opacity = 1), 50);
@@ -538,7 +503,7 @@ function showNotification(msg, type = "info") {
 }
 
 // -----------------------------
-// 🏁 Run App
+// 🏁 Run
 // -----------------------------
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", init);
@@ -546,6 +511,34 @@ if (document.readyState === "loading") {
   init();
 }
 
-// Expose for inline handlers
+// Expose functions
 window.toggleTopic = toggleTopic;
 window.deleteMockTest = deleteMockTest;
+
+
+// -----------------------------
+// 👤 Display Logged-in User Info
+// -----------------------------
+function renderUserProfile() {
+  const nameEl = document.getElementById("user-name");
+  const avatarEl = document.getElementById("user-avatar");
+  const logoutBtn = document.getElementById("logout-btn");
+
+  if (!user || !nameEl || !avatarEl) return;
+
+  // Default values
+  const userName = user.fullName || user.name || "User";
+  const userPic =
+    user.picture ||
+    user.profilePic ||
+    "assets/default-avatar.png";
+
+  nameEl.textContent = userName;
+  avatarEl.src = userPic;
+
+  logoutBtn.addEventListener("click", () => {
+    localStorage.clear();
+    window.location.href = "auth.html";
+  });
+}
+

@@ -1,43 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GATEQuest | Login / Signup</title>
-  <link rel="stylesheet" href="auth.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="auth-container">
-    <div class="auth-card">
-      <h1 class="auth-title">GATEQuest</h1>
-      <p class="auth-subtitle" id="form-subtitle">Login to continue</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GATEQuest | Login / Signup</title>
+    <link rel="stylesheet" href="auth.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-card">
+        <h1 class="auth-title">GATEQuest</h1>
+        <p class="auth-subtitle" id="form-subtitle">Login to continue</p>
 
-      <!-- Login Form -->
-      <form id="login-form" class="auth-form">
-        <input type="email" id="login-email" placeholder="Email" required />
-        <input type="password" id="login-password" placeholder="Password" required />
-        <button type="submit" class="btn btn-primary">Login</button>
-        <p class="switch-text">Don't have an account?
-          <a href="#" id="show-signup">Sign up</a>
-        </p>
-      </form>
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form">
+          <input type="email" id="login-email" placeholder="Email" required />
+          <input
+            type="password"
+            id="login-password"
+            placeholder="Password"
+            required
+          />
+          <button type="submit" class="btn btn-primary">Login</button>
+          <p>Or</p>
+          <button id="google-login" class="btn btn-primary">
+            <img
+              src="https://developers.google.com/identity/images/g-logo.png"
+              width="20"
+            />
+            Sign in with Google
+          </button>
 
-      <!-- Signup Form -->
-      <form id="signup-form" class="auth-form hidden">
-        <input type="text" id="signup-name" placeholder="Full Name" required />
-        <input type="email" id="signup-email" placeholder="Email" required />
-        <input type="password" id="signup-password" placeholder="Password" required />
-        <button type="submit" class="btn btn-success">Sign Up</button>
-        <p class="switch-text">Already have an account?
-          <a href="#" id="show-login">Login</a>
-        </p>
-      </form>
+          <p class="switch-text">
+            Don't have an account?
+            <a href="#" id="show-signup">Sign up</a>
+          </p>
+        </form>
 
-      <p id="message" class="message"></p>
+        <!-- Signup Form -->
+        <form id="signup-form" class="auth-form hidden">
+          <input
+            type="text"
+            id="signup-name"
+            placeholder="Full Name"
+            required
+          />
+          <input type="email" id="signup-email" placeholder="Email" required />
+          <input
+            type="password"
+            id="signup-password"
+            placeholder="Password"
+            required
+          />
+          <button type="submit" class="btn btn-success">Sign Up</button>
+          <p>Or</p>
+          <button id="google-login" class="btn btn-primary">
+            <img
+              src="https://developers.google.com/identity/images/g-logo.png"
+              width="20"
+            />
+            Sign in with Google
+          </button>
+
+          <p class="switch-text">
+            Already have an account?
+            <a href="#" id="show-login">Login</a>
+          </p>
+        </form>
+
+        <p id="message" class="message"></p>
+      </div>
     </div>
-  </div>
 
-  <script src="auth.js"></script>
-</body>
+    <script src="auth.js"></script>
+  </body>
 </html>

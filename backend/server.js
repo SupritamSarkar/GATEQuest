@@ -6,6 +6,9 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import syllabusRoutes from "./routes/syllabusRoutes.js";
 import mockTestRoutes from "./routes/mockTestRoutes.js";
+import "./config/passport.js";
+import session from "express-session";
+import passport from "passport";
 
 dotenv.config();
 const app = express();
@@ -18,6 +21,7 @@ const allowedOrigins = [
   "https://gatequest.netlify.app",   // your Netlify frontend
 ];
 
+//Cors middleware
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -34,6 +38,22 @@ app.use(
   })
 );
 
+
+// ✅ Sessions (required for Passport)
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+// ✅ Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+//JSON parser middleware
 app.use(express.json());
 connectDB();
 

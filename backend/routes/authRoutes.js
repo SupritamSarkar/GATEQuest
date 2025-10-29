@@ -1,14 +1,31 @@
-import express from 'express';
-import authMiddleware from '../middleware/authMiddleware.js';    // Importing authentication middleware
+import passport from "passport";
+import express from "express";
+import jwt from "jsonwebtoken";
 
-import { registerUser, loginUser, getUserInfo } from '../controllers/authControllers.js';  // Importing controller functions
 
-const routers = express.Router();       // Creating a new router instance
+const router = express.Router();
 
-routers.post('/register', registerUser);        // Route for user registration
+// ...existing register/login routes
 
-routers.post('/login', loginUser);      // Route for user login
+// ✅ Google Auth route
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
 
-routers.get('/getUser', authMiddleware, getUserInfo);      // Route to get user information, protected by authentication middleware
+// ✅ Google Callback route
+router.get(
+  "/google/callback",
+  passport.authenticate("google", { failureRedirect: "https://gatequest.netlify.app/auth.html" }),
+  (req, res) => {
+    // Redirect to frontend with JWT token (optional)
+    const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, {
+      expiresIn: "10h",
+    });
 
-export default routers;
+    // redirect user back to frontend with token in query
+    res.redirect(`https://gatequest.netlify.app/index.html?token=${token}`);
+  }
+);
+
+export default router;
