@@ -24,7 +24,7 @@ router.get(
   passport.authenticate("google", { failureRedirect: "https://gatequest.netlify.app/auth.html" }),
   (req, res) => {
     // Redirect to frontend with JWT token (optional)
-    const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ id: req.user.id }, process.env.JWT_SECRET, {
       expiresIn: "10h",
     });
 
