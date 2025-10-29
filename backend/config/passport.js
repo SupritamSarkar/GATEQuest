@@ -19,17 +19,17 @@ passport.use(
           user = await User.create({
             fullName: profile.displayName,
             email: profile.emails[0].value,
-            password: Math.random().toString(36).slice(-8), // random placeholder
+            password: Math.random().toString(36).slice(-8),
           });
         }
-        return done(null, user);
+        return done(null, user); // req.user will now have the user
       } catch (err) {
-        console.error("Google auth error:", err);
         return done(err, null);
       }
     }
   )
 );
+
 
 passport.serializeUser((user, done) => done(null, user.id));
 passport.deserializeUser(async (id, done) => {
