@@ -1,11 +1,16 @@
 import passport from "passport";
 import express from "express";
 import jwt from "jsonwebtoken";
+import { registerUser, loginUser } from "../controllers/authControllers.js";
+
 
 
 const router = express.Router();
 
-// ...existing register/login routes
+
+// Existing imports for registerUser and loginUser
+router.post("/register", registerUser);
+router.post("/login", loginUser);
 
 // ✅ Google Auth route
 router.get(
@@ -27,5 +32,7 @@ router.get(
     res.redirect(`https://gatequest.netlify.app/index.html?token=${token}`);
   }
 );
+
+
 
 export default router;
