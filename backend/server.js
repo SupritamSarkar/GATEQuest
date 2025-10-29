@@ -13,6 +13,8 @@ import "./config/passport.js";
 dotenv.config();
 const app = express();
 
+connectDB();
+
 // -----------------------------
 // ⚙️ CORS Configuration (Express 5 Safe)
 // -----------------------------
