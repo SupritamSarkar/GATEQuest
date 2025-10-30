@@ -13,7 +13,7 @@ const showSignup = document.getElementById("show-signup");
 const showLogin = document.getElementById("show-login");
 const messageEl = document.getElementById("message");
 const subtitleEl = document.getElementById("form-subtitle");
-const googleLoginBtn = document.getElementById("google-login");
+const googleLoginBtn = document.getElementById("google-login-btn");
 const googleSignupBtn = document.getElementById("google-signup-btn");
 
 // -----------------------------

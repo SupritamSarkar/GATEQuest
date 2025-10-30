@@ -29,7 +29,9 @@ router.get(
     });
 
     // redirect user back to frontend with token in query
-    res.redirect(`https://gatequest.netlify.app/index.html?token=${token}`);
+    res.redirect(
+      `https://gatequest.netlify.app/auth.html?token=${token}`
+    );
   }
 );
 

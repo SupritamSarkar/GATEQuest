@@ -80,21 +80,21 @@ body {
   transition: var(--transition);
 }
 
-.btn-primary {
+.btn-login {
   background: var(--blue);
   color: var(--fg);
 }
 
-.btn-primary:hover {
+.btn-login:hover {
   background: #66a8b2;
 }
 
-.btn-success {
+.btn-signup {
   background: var(--green);
   color: var(--fg);
 }
 
-.btn-success:hover {
+.btn-signup:hover {
   background: #b8bb26;
 }
 
@@ -128,4 +128,9 @@ body {
 
 .message.success {
   color: var(--green);
+}
+
+.btn-google-login img {
+  
+  
 }

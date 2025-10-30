@@ -559,7 +559,7 @@ function renderUserProfile() {
   const userPic =
     user.picture ||
     user.profilePic ||
-    "assets/default-avatar.png";
+    "https://www.shutterstock.com/image-vector/blank-avatar-photo-placeholder-flat-600nw-1151124605.jpg";
 
   nameEl.textContent = userName;
   avatarEl.src = userPic;

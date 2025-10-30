@@ -831,11 +831,11 @@ body {
 .user-profile {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 10px;
   padding: 10px 20px;
-  background: #f5f5f5;
-  border-bottom: 1px solid #ddd;
+  background: var(--bg-dark-soft);
+  border-radius: 10px;
 }
 
 .user-avatar {
@@ -844,11 +844,14 @@ body {
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #ccc;
+  display: flex;
+  justify-content: flex-start;
+
 }
 
 .user-name {
   font-weight: 600;
-  color: #333;
+  color: #ffffff;
 }
 
 .logout-btn {
@@ -859,6 +862,7 @@ body {
   border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
+  margin-left: auto;
 }
 
 .logout-btn:hover {
