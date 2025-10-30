@@ -25,20 +25,36 @@ function showMessage(msg, type = "") {
   messageEl.className = `message ${type}`;
 }
 
+// auth.js
+
 // -----------------------------
 // 🧠 Handle Google Login Redirect
 // -----------------------------
 (function handleGoogleRedirect() {
   const params = new URLSearchParams(window.location.search);
   const token = params.get("token");
+  const userQuery = params.get("user"); // <-- Get the user query
 
-  if (token) {
-    // ✅ Save token and redirect to dashboard
-    localStorage.setItem("token", token);
-    showMessage("Login successful via Google!", "success");
-    setTimeout(() => {
-      window.location.href = "index.html";
-    }, 1000);
+  if (token && userQuery) {
+    // <-- Check for BOTH
+    try {
+      // 1. Decode the user string
+      const userJson = decodeURIComponent(userQuery);
+
+      // 2. ✅ Save BOTH token and user
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", userJson); // <-- THE FIX
+
+      showMessage("Login successful via Google!", "success");
+
+      // 3. Redirect to the main app
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 1000);
+    } catch (e) {
+      console.error("Failed to parse user data from URL", e);
+      showMessage("Login failed. Please try again.", "error");
+    }
   }
 })();
 
@@ -54,7 +70,9 @@ if (googleLoginBtn) {
 
 if (googleSignupBtn) {
   googleSignupBtn.addEventListener("click", () => {
-    window.location.href = "https://gatequest.onrender.com/api/v1/auth/google" || "http://localhost:5000/api/v1/auth/google";
+    window.location.href =
+      "https://gatequest.onrender.com/api/v1/auth/google" ||
+      "http://localhost:5000/api/v1/auth/google";
   });
 }
 
